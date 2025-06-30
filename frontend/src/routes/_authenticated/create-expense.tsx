@@ -3,10 +3,11 @@ import { Input } from '@/components/ui/input'
 import { Calendar } from '@/components/ui/calendar'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useForm } from '@tanstack/react-form'
-import { api, getAllExpensesQueryOptions } from '@/lib/api'
+import { createExpense, getAllExpensesQueryOptions, loadingCreateExpenseQueryOptions } from '@/lib/api'
 import { useQueryClient } from '@tanstack/react-query'
 
 import { createExpenseSchema } from '@server/sharedTypes'
+import { toast } from 'sonner'
 
 export const Route = createFileRoute('/_authenticated/create-expense')({
     component: CreateExpense,
@@ -28,19 +29,32 @@ function CreateExpense() {
         onSubmit: async ({ value }) => {
 
             const existingExpenses = await queryClient.ensureQueryData(getAllExpensesQueryOptions)
-
-            const res = await api.expenses.$post({ json: value })
-            if (!res.ok) {
-                throw new Error('server error')
-            }
-
-            const newExpense = await res.json()
-            queryClient.setQueryData(getAllExpensesQueryOptions.queryKey, {
-                ...existingExpenses,
-                expenses: [newExpense, ...existingExpenses.expenses]
-            })
-
             navigate({ to: '/expenses' })
+
+            // loading state
+            queryClient.setQueryData(loadingCreateExpenseQueryOptions.queryKey, { expense: value })
+
+            try {
+                // success state
+                const newExpense = await createExpense({ value })
+
+                queryClient.setQueryData(getAllExpensesQueryOptions.queryKey, {
+                    ...existingExpenses,
+                    expenses: [newExpense, ...existingExpenses.expenses]
+                })
+
+                toast("Expense created successfully", {
+                    description: "Your expense has been added",
+                })
+
+            } catch (error) {
+                // error state
+                toast("Expense creation failed", {
+                    description: "Please try again later",
+                })
+            } finally {
+                queryClient.setQueryData(loadingCreateExpenseQueryOptions.queryKey, {})
+            }
         },
     })
 
