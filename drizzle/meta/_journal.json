@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1751202270019,
+      "tag": "0000_burly_the_captain",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1751211038454,
+      "tag": "0001_worried_shard",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1751221760577,
+      "tag": "0002_demonic_amazoness",
+      "breakpoints": true
+    }
+  ]
+}

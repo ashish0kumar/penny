@@ -1,0 +1,28 @@
+{
+  "name": "pennie",
+  "module": "server/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun server/index.ts",
+    "dev": "bun --watch server/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/pg": "^8.15.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.7.0",
+    "@kinde-oss/kinde-typescript-sdk": "^2.11.1",
+    "@neondatabase/serverless": "^1.0.1",
+    "drizzle-kit": "^0.31.4",
+    "drizzle-orm": "^0.44.2",
+    "drizzle-zod": "^0.8.2",
+    "hono": "^4.8.3",
+    "pg": "^8.16.3",
+    "postgres": "^3.4.7",
+    "zod": "^3.25.67"
+  }
+}
