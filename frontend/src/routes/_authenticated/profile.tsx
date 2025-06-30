@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { userQueryOptions } from '@/lib/api'
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
@@ -19,11 +19,7 @@ function Profile() {
 
             <div className="flex items-center gap-4 mb-6">
                 <Avatar>
-                    {data.user.picture ? (
-                        <AvatarImage src={data.user.picture} alt={data.user.given_name} />
-                    ) : (
-                        <AvatarFallback>{data.user.given_name[0]}</AvatarFallback>
-                    )}
+                    <AvatarFallback>{data.user.given_name[0]}</AvatarFallback>
                 </Avatar>
 
                 <div className="flex flex-col">

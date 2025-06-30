@@ -43,14 +43,14 @@ function CreateExpense() {
                     expenses: [newExpense, ...existingExpenses.expenses]
                 })
 
-                toast("Expense created successfully", {
-                    description: "Your expense has been added",
+                toast("Expense created", {
+                    description: "A new expense has been added to your records.",
                 })
 
             } catch (error) {
                 // error state
-                toast("Expense creation failed", {
-                    description: "Please try again later",
+                toast("Failed to create expense", {
+                    description: "Something went wrong. Please check your input or try again.",
                 })
             } finally {
                 queryClient.setQueryData(loadingCreateExpenseQueryOptions.queryKey, {})
