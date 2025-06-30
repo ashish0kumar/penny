@@ -3,7 +3,8 @@ import { Input } from '@/components/ui/input'
 import { Calendar } from '@/components/ui/calendar'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useForm } from '@tanstack/react-form'
-import { api } from '@/lib/api'
+import { api, getAllExpensesQueryOptions } from '@/lib/api'
+import { useQueryClient } from '@tanstack/react-query'
 
 import { createExpenseSchema } from '@server/sharedTypes'
 
@@ -12,6 +13,7 @@ export const Route = createFileRoute('/_authenticated/create-expense')({
 })
 
 function CreateExpense() {
+    const queryClient = useQueryClient()
     const navigate = useNavigate()
 
     const form = useForm({
@@ -24,10 +26,20 @@ function CreateExpense() {
             date: new Date().toISOString()
         },
         onSubmit: async ({ value }) => {
+
+            const existingExpenses = await queryClient.ensureQueryData(getAllExpensesQueryOptions)
+
             const res = await api.expenses.$post({ json: value })
             if (!res.ok) {
                 throw new Error('server error')
             }
+
+            const newExpense = await res.json()
+            queryClient.setQueryData(getAllExpensesQueryOptions.queryKey, {
+                ...existingExpenses,
+                expenses: [newExpense, ...existingExpenses.expenses]
+            })
+
             navigate({ to: '/expenses' })
         },
     })
