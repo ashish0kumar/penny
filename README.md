@@ -1,6 +1,16 @@
-# Penny
+<h1 align="center">Penny</h1>
 
+<p align="center">
 A personal expense tracker for managing and monitoring your spending with a minimal interface
+</p>
+
+|Expenses|Create|
+|---|---|
+|![](assets/expenses.png)|![](assets/create.png)|
+
+|Home|Profile|
+|---|---|
+|![](assets/home.png)|![](assets/profile.png)|
 
 ## Features
 
