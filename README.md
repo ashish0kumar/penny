@@ -4,13 +4,15 @@
 A personal expense tracker for managing and monitoring your spending with a minimal interface
 </p>
 
-|Expenses|Create|
-|---|---|
-|![](assets/expenses.png)|![](assets/create.png)|
+<div align="center">
+  <img src="assets/home.png" alt="home" width="49%"/>
+  <img src="assets/expenses.png" alt="expenses" width="49%"/>
+</div>
 
-|Home|Profile|
-|---|---|
-|![](assets/home.png)|![](assets/profile.png)|
+<div align="center">
+  <img src="assets/create.png" alt="create" width="49%"/>
+  <img src="assets/profile.png" alt="profile" width="49%"/>
+</div>
 
 ## Features
 
