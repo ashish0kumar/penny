@@ -1,6 +1,6 @@
 # Penny
 
-A minimal expense tracker that helps you manage and monitor your personal spending with a clean, modern interface.
+A personal expense tracker for managing and monitoring your spending with a minimal interface
 
 ## Features
 
